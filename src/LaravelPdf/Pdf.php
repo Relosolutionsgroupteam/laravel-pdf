@@ -48,6 +48,7 @@ class Pdf {
 		if(isset($this->config['cols'])){
 	    	$this->mpdf->SetColumns   ($this->config['cols'],'J');
 		}		
+	  $this->mpdf->showWatermarkText = true; 
 
 		$this->mpdf->WriteHTML($html);
 	}
