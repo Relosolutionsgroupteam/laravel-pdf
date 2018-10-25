@@ -45,6 +45,9 @@ class Pdf {
 		$this->mpdf->SetSubject       ( $this->getConfig('subject') );
 		$this->mpdf->SetKeywords      ( $this->getConfig('keywords') );
 		$this->mpdf->SetDisplayMode   ( $this->getConfig('display_mode') );
+		if(isset($this->config['cols'])){
+	    	$this->mpdf->SetColumns   ($this->config['cols'],'J');
+		}
 	    $this->mpdf->showWatermarkText = true; 
 		$this->mpdf->WriteHTML($html);
 	}
