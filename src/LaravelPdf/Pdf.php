@@ -44,20 +44,31 @@ class Pdf {
 		// please use the <title> tag.
 		$this->mpdf->SetTitle('Document');
 
+		$this->mpdf->AddPage('P', // L - landscape, P - portrait 
+		        '', '', '', '',
+		        '', // margin_left
+		        '', // margin right
+		       50, // margin top
+		       0, // margin bottom
+		        '', // margin header
+		        ''); // margin footer		
 		$this->mpdf->SetAuthor        ( $this->getConfig('author') );
 		$this->mpdf->SetCreator       ( $this->getConfig('creator') );
 		$this->mpdf->SetSubject       ( $this->getConfig('subject') );
 		$this->mpdf->SetKeywords      ( $this->getConfig('keywords') );
 		$this->mpdf->SetDisplayMode   ( $this->getConfig('display_mode') );
-		if(isset($this->config['cols'])){
+		
+		$this->mpdf->SetDisplayMode('fullpage');
+	
+	    $this->mpdf->SetHTMLHeader($this->config['header'],'',TRUE);
+	    if(isset($this->config['cols'])){
 	    	$this->mpdf->SetColumns   ($this->config['cols'],'J');
-		}		
+		}
 	  	$this->mpdf->showWatermarkText = true; 
 
 		if (isset($this->config['instanceConfigurator']) && is_callable(($this->config['instanceConfigurator']))) {
 			$this->config['instanceConfigurator']($this->mpdf);
 		}
-
 		$this->mpdf->WriteHTML($html);
 	}
 
