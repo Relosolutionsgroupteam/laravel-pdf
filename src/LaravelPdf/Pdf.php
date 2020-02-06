@@ -56,7 +56,7 @@ class Pdf {
 			        '', '', '', '',
 			        '', // margin_left
 			        '', // margin right
-			       50, // margin top
+			       35, // margin top
 			       0, // margin bottom
 			        '', // margin header
 			        ''); // margin footer		
