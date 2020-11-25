@@ -70,7 +70,10 @@ class Pdf {
 		if (isset($this->config['instanceConfigurator']) && is_callable(($this->config['instanceConfigurator']))) {
 			$this->config['instanceConfigurator']($this->mpdf);
 		}
-		$this->mpdf->WriteHTML($html);
+		$chunks = explode("chunk", $html);
+		foreach($chunks as $key => $val) {
+		    $this->mpdf->WriteHTML($val);
+		}
 	}
 
 	protected function getConfig($key)
